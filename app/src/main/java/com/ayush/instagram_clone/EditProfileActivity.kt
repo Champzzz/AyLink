@@ -1,6 +1,7 @@
 package com.ayush.instagram_clone
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
@@ -22,6 +23,8 @@ class EditProfileActivity : AppCompatActivity() {
         ActivityEditProfileBinding.inflate(layoutInflater)
     }
 
+    var imageuuri: Uri? = null
+
 
 
     private val launcher = registerForActivityResult(ActivityResultContracts.GetContent()){
@@ -33,6 +36,7 @@ class EditProfileActivity : AppCompatActivity() {
                 }else{
                     user.image = it
                     binding.editProfileImageDisplay.setImageURI(uri)
+                    imageuuri = uri
                 }
             }
         }
@@ -57,37 +61,63 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
 
+
+//
+
+
         binding.editProfileSubmitButton.setOnClickListener {
+            val newName = binding.editProfileEditName.text.toString()
+            val newUsername = binding.editProfileEditUsername.text.toString()
 
-            if(binding.editProfileEditName.text.toString().equals(user.name) and
-                binding.editProfileEditUsername.text.toString().equals(user.username)){
-                startActivity(Intent(this@EditProfileActivity,HomeActivity::class.java))
-            }
-            else{
+            if (newName == user.name && newUsername == user.username) {
+                // No changes were made, so go back to HomeActivity
+                startActivity(Intent(this@EditProfileActivity, HomeActivity::class.java))
+            } else {
+                // Changes were made, so update the user document in Firestore
+                val map = mutableMapOf<String, Any>()
 
-                user.name = binding.editProfileEditName.text.toString()
-                user.username = binding.editProfileEditUsername.text.toString()
-
-                val map = mutableMapOf<String,Any>()
-
-                if(!binding.editProfileEditName.text.toString().equals(user.name)){
-                    map["name"] = binding.editProfileEditName.text.toString()
+                if (newName != user.name) {
+                    map["name"] = newName
                 }
 
-                if(!binding.editProfileEditUsername.text.toString().equals(user.username)){
-                    map["name"] = binding.editProfileEditUsername.text.toString()
+                if (newUsername != user.username) {
+                    map["username"] = newUsername
                 }
 
-                Firebase.firestore.collection(USER_NODE)
-                    .document(Firebase.auth.currentUser!!.uid).set(map, SetOptions.merge()).addOnSuccessListener {
-                        startActivity(Intent(this@EditProfileActivity,HomeActivity::class.java))
+                // Check if the user has selected a new image
+                val selectedImageUri = imageuuri
+                    if (selectedImageUri != null) {
+                        uploadImage(selectedImageUri, USER_PROFILE_FOLDER) { imageUrl ->
+                            if (imageUrl != null) {
+                                map["image"] = imageUrl // Update the image URL in Firestore
+                            }
+
+                            // Update the document in Firestore
+                            Firebase.firestore.collection(USER_NODE)
+                                .document(Firebase.auth.currentUser!!.uid)
+                                .set(map, SetOptions.merge())
+                                .addOnSuccessListener {
+                                    startActivity(Intent(this@EditProfileActivity, HomeActivity::class.java))
+                                }
+                                .addOnFailureListener { exception ->
+                                    // Handle the failure, e.g., display an error message
+                                }
+                        }
+                    } else {
+                        // No new image selected, update other fields only
+                        Firebase.firestore.collection(USER_NODE)
+                            .document(Firebase.auth.currentUser!!.uid)
+                            .set(map, SetOptions.merge())
+                            .addOnSuccessListener {
+                                startActivity(Intent(this@EditProfileActivity, HomeActivity::class.java))
+                            }
+                            .addOnFailureListener { exception ->
+                                // Handle the failure, e.g., display an error message
+                            }
                     }
-
             }
-
-
-
         }
+
 
 
         binding.editProfileEditImageText.setOnClickListener{

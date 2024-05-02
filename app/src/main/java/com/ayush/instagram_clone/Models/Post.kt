@@ -6,6 +6,9 @@ class Post {
     var Uid:String=""
     var time:String=""
 
+    var likes:Int=0
+
+
     constructor()
 
     constructor(postUrl:String,caption:String){
@@ -19,6 +22,9 @@ class Post {
         this.Uid = Uid
         this.time = time
     }
+
+
+
 
 
 }

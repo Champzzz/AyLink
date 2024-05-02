@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_pink"
+    android:background="@drawable/loginback"
     tools:context=".SignUpActivity">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/sign_up_image"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/add_profile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-    <!--    <ImageView-->
+        <!--    <ImageView-->
 <!--        android:id="@+id/sign_up_image"-->
 <!--        android:layout_width="136dp"-->
 <!--        android:layout_height="124dp"-->
@@ -30,7 +23,29 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <de.hdodenhof.circleimageview.CircleImageView
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/sign_up_image"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="68dp"
+            android:src="@drawable/add_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/signup_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginTop="44dp"
+            android:src="@drawable/app_lodo2_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_image" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/sign_up_image_plus"
         android:layout_width="35dp"
         android:layout_height="35dp"
@@ -52,6 +67,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
         android:hint=" Email ID"
+        app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,6 +86,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
+        app:endIconMode="clear_text"
         android:hint=" User Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -82,19 +99,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageView
-        android:id="@+id/sign_up_insta_image"
-        android:layout_width="285dp"
-        android:layout_height="143dp"
-        android:layout_marginStart="63dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="63dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_image"
-        app:srcCompat="@drawable/instagram_text" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/sign_up_passwordField"
         android:layout_width="match_parent"
@@ -103,6 +107,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
         android:hint=" Password"
+        app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,12 +124,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
         android:hint=" Name"
+        app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_insta_image">
+        app:layout_constraintTop_toBottomOf="@+id/signup_app_name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -137,8 +144,8 @@
         style="@style/Widget.Material3.Button.TonalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/blue"
+        android:layout_marginTop="56dp"
+        android:backgroundTint="#AAA08D"
         android:text="Submit"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/sign_up_passwordField"
@@ -159,7 +166,7 @@
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_up_Button"
-        app:layout_constraintVertical_bias="0.995" />
+        app:layout_constraintVertical_bias="0.867" />
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

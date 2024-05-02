@@ -78,6 +78,7 @@ class SignUpActivity : AppCompatActivity() {
                             .addOnCompleteListener {
                                 Toast.makeText(this@SignUpActivity, "Registered Successfully", Toast.LENGTH_SHORT).show()
                                 startActivity(Intent(this,HomeActivity::class.java))
+                                overridePendingTransition(R.anim.animate_shrink_enter,R.anim.animate_shrink_exit)
                                 finish()
                             }
 
@@ -95,6 +96,7 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.signUpLogin.setOnClickListener{
             startActivity(Intent(this,LogInActivity::class.java))
+            overridePendingTransition(R.anim.animate_slide_left_enter,R.anim.animate_slide_left_exit)
             finish()
         }
 

@@ -23,8 +23,6 @@ class LogInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        window.statusBarColor = ContextCompat.getColor(this@LogInActivity , R.color.background_pink)
-
         val text = "<font color=#FF000000>Don't have an account?</font> <font color=#1E88E5>  Sign up</font>"
         binding.loginSignUpText.setText(Html.fromHtml(text))
 
@@ -38,13 +36,14 @@ class LogInActivity : AppCompatActivity() {
             else{
 
                 var user = User(
-                    binding.LoginEmailField.editText?.text.toString(),
-                    binding.LoginPasswordField.editText?.text.toString()
+                    binding.LoginEmailField.editText?.text.toString().trim(),
+                    binding.LoginPasswordField.editText?.text.toString().trim()
                 )
 
                 Firebase.auth.signInWithEmailAndPassword(user.email!!,user.password!!).addOnCompleteListener {
                     if(it.isSuccessful){
                         startActivity(Intent(this@LogInActivity,HomeActivity::class.java))
+                        overridePendingTransition(R.anim.animate_slide_left_enter,R.anim.animate_slide_left_exit)
                         finish()
                     }else{
                         Toast.makeText(this@LogInActivity, it.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
@@ -55,6 +54,7 @@ class LogInActivity : AppCompatActivity() {
 
         binding.loginSignUpText.setOnClickListener {
             startActivity(Intent(this@LogInActivity,SignUpActivity::class.java))
+            overridePendingTransition(R.anim.animate_slide_left_enter,R.anim.animate_slide_left_exit)
             finish()
         }
     }

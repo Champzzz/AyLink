@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
@@ -41,25 +42,29 @@
 
 
             <TextView
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/abrilfatface_regular"
                 android:gravity="center"
-                android:text="AppName"
+                android:text="Aylink"
+                android:textSize="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/Home_User_Image2"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/add_profile"
+            <ImageView
+                android:id="@+id/sun"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/brightness"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintHorizontal_bias="0.892"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -89,30 +94,30 @@
             android:layout_height="match_parent">
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/Home_User_Image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/add_profile"
-                android:layout_marginTop="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+<!--             <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                android:id="@+id/Home_User_Image"-->
+<!--                android:layout_width="80dp"-->
+<!--                android:layout_height="80dp"-->
+<!--                android:src="@drawable/add_profile"-->
+<!--                android:layout_marginTop="0dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintVertical_bias="0.0" />-->
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/sign_up_image_plus"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/profile_plus"
-                app:civ_border_color="#FFFFFFFF"
-                app:civ_border_width="3dp"
-                app:layout_constraintBottom_toBottomOf="@+id/Home_User_Image"
-                app:layout_constraintEnd_toEndOf="@+id/Home_User_Image"
-                app:layout_constraintHorizontal_bias="0.91"
-                app:layout_constraintStart_toStartOf="@+id/Home_User_Image"
-                app:layout_constraintTop_toTopOf="@+id/Home_User_Image"
-                app:layout_constraintVertical_bias="0.94" />
+<!--            <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                android:id="@+id/sign_up_image_plus"-->
+<!--                android:layout_width="25dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:src="@drawable/profile_plus"-->
+<!--                app:civ_border_color="#FFFFFFFF"-->
+<!--                app:civ_border_width="3dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/Home_User_Image"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/Home_User_Image"-->
+<!--                app:layout_constraintHorizontal_bias="0.91"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/Home_User_Image"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/Home_User_Image"-->
+<!--                app:layout_constraintVertical_bias="0.94" />-->
 
             <androidx.recyclerview.widget.RecyclerView
 
@@ -120,11 +125,12 @@
 
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/Home_User_Image"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -146,7 +152,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/All_Post_View"
         android:layout_width="match_parent"
-        android:layout_height="580dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -154,6 +160,7 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </ScrollView>

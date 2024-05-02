@@ -16,8 +16,8 @@ android {
         applicationId = "com.ayush.instagram_clone"
         minSdk = 28
         targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 6
+        versionName = "6.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -65,9 +65,10 @@ dependencies {
 
     implementation ("com.squareup.picasso:picasso:2.8")
 
-    implementation ("com.github.bumptech.glide:glide:4.16.0")   //glide to show video like picasso
-
-
     implementation ("com.github.marlonlom:timeago:4.0.3")    // to show time
+
+    implementation ("com.makeramen:roundedimageview:2.3.0")     //round image design
+
+    implementation ("com.github.bumptech.glide:glide:4.16.0")   //glide to show video like picasso
 
 }

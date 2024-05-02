@@ -19,16 +19,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+
+    <ImageView
         android:id="@+id/do_search_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="search"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/insta_search_icon"
         app:layout_constraintBottom_toBottomOf="@+id/searchView"
         app:layout_constraintEnd_toEndOf="@+id/searchView"
         app:layout_constraintTop_toTopOf="@+id/searchView"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.407" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Search_Rv"

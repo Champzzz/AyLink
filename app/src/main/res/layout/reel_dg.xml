@@ -22,6 +22,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="24dp"
         android:src="@drawable/add_profile"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintStart_toStartOf="parent" />
@@ -37,8 +38,28 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/reel_DG_profilPic"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/reel_DG_profilPic"
-        app:layout_constraintTop_toTopOf="@+id/reel_DG_profilPic" />
+        app:layout_constraintTop_toBottomOf="@+id/reelDG_Name"
+        app:layout_constraintVertical_bias="0.787" />
+
+
+    <TextView
+        android:id="@+id/reelDG_Name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Champzz"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="@+id/reel_DG_profilPic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/reel_DG_profilPic"
+        app:layout_constraintBottom_toTopOf="@+id/reelDG_caption"
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="788dp" />
 
     <ProgressBar
         android:id="@+id/ReelWait_progressBar"

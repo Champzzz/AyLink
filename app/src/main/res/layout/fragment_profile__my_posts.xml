@@ -3,11 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.Profile_MyPostsFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/My_Post_RV"
+        android:id="@+id/MyPost_RV"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</FrameLayout>
+
+
+
+
+
+    </FrameLayout>

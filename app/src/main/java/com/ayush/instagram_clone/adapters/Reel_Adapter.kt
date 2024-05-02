@@ -6,11 +6,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ayush.instagram_clone.Models.Post
 import com.ayush.instagram_clone.Models.Reels
+import com.ayush.instagram_clone.Models.User
 import com.ayush.instagram_clone.R
 import com.ayush.instagram_clone.databinding.MyPostRvDesignBinding
 import com.ayush.instagram_clone.databinding.ReelDgBinding
+import com.ayush.instagram_clone.utils.USER_NODE
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.toObjects
 import com.squareup.picasso.Picasso
 
 
@@ -27,6 +32,7 @@ class Reel_Adapter(var context: Context, var reels_list:ArrayList<Reels>): Recyc
     override fun onBindViewHolder(holder: Reel_Adapter.ViewHolder, position: Int) {
         Picasso.get().load(reels_list.get(position).profile_link).placeholder(R.drawable.add_profile).into(holder.binding.reelDGProfilPic)
         holder.binding.reelDGCaption.setText(reels_list.get(position).caption)
+        holder.binding.reelDGName.setText(reels_list.get(position).profile_name)
         holder.binding.videoView.setVideoPath(reels_list.get(position).ReelUrl)
         holder.binding.videoView.setOnPreparedListener{
             holder.binding.ReelWaitProgressBar.visibility = View.GONE
