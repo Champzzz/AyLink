@@ -39,6 +39,14 @@ class Profile_PostView : AppCompatActivity() , TextToSpeech.OnInitListener {
         val receivedTime = intent.getStringExtra("time")!!
         var postid = ""
 
+        val timeago = receivedTime.toLong()
+
+        val nowtime = TimeAgo.using(timeago)
+
+        Log.d("nowtime",nowtime.toString())
+
+        binding.PostTime.text = nowtime.toString()
+
         Firebase.firestore.collection(USER_NODE).document(receivedUid).get().addOnSuccessListener {
 
             var user : User = it.toObject<User>()!!

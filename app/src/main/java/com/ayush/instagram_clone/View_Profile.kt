@@ -11,6 +11,7 @@ import com.ayush.instagram_clone.databinding.ActivityViewProfileBinding
 import com.ayush.instagram_clone.fragments.Profile_MyPostsFragment
 import com.ayush.instagram_clone.fragments.Profile_MyReelsFragment
 import com.ayush.instagram_clone.utils.FOLLOW
+import com.ayush.instagram_clone.utils.FOLLOWTHEM
 import com.ayush.instagram_clone.utils.POST
 import com.ayush.instagram_clone.utils.USER_NODE
 import com.google.firebase.Firebase
@@ -42,7 +43,10 @@ class View_Profile : AppCompatActivity() {
             .addOnSuccessListener {
                 val user: User = it.toObject<User>()!!
 
-                binding.profileNameDisplay.text = user.username
+                binding.profileUsernameDisplay.text = user.username
+                binding.MyProfileFullname.text = user.name
+
+
 
                 if (!user.image.isNullOrEmpty()) {
                     Picasso.get().load(user.image).into(binding.profileImageDisplay)
@@ -54,6 +58,16 @@ class View_Profile : AppCompatActivity() {
                 Firebase.firestore.collection(user.email + POST).get()
                     .addOnSuccessListener {
                         binding.profilePostsNumberDisplay.text = it.size().toString()
+                    }
+
+                Firebase.firestore.collection(user.email + FOLLOWTHEM).get()
+                    .addOnSuccessListener {
+                        binding.profileNumberFollowerDisplay.text = it.size().toString()
+                    }
+
+                Firebase.firestore.collection(user.email + FOLLOW).get()
+                    .addOnSuccessListener {
+                        binding.profileNumberFollowingDisplay.text = it.size().toString()
                     }
 
                 viewPagerAdapter =

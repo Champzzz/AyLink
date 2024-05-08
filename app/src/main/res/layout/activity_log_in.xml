@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LogInActivity"
-    android:background="@drawable/loginback">
+    android:background="@drawable/newcanvadesign">
 
 
   <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,8 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="84dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="150dp"
         android:hint=" Email ID"
         app:endIconMode="clear_text"
 
@@ -84,13 +84,13 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="207dp"
-        android:layout_height="148dp"
+        android:layout_width="300dp"
+        android:layout_height="246dp"
         android:layout_marginTop="96dp"
-        android:src="@drawable/app_lodo2_bg"
+        android:src="@drawable/connectingpeopleremovebgpreview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ImageView>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
   </androidx.constraintlayout.widget.ConstraintLayout>

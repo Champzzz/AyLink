@@ -17,6 +17,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ayush.instagram_clone.ChatsActivity
 import com.ayush.instagram_clone.Models.Post
 import com.ayush.instagram_clone.Models.User
 import com.ayush.instagram_clone.R
@@ -63,6 +64,13 @@ class HomeFragment : Fragment() , SensorEventListener{
 
         setupBrightnessSensor()
         checkAndRequestWifi()
+
+        binding.homeChatButton.setOnClickListener {
+
+            startActivity(Intent(context,ChatsActivity::class.java))
+            activity?.overridePendingTransition(R.anim.animate_slide_left_enter,R.anim.animate_slide_left_exit)
+
+        }
 
         adapter= Post_Adapter(requireContext(),post_list)
         binding.AllPostView.layoutManager=LinearLayoutManager(requireContext())
@@ -159,7 +167,7 @@ class HomeFragment : Fragment() , SensorEventListener{
         }
 
         val alertDialog = builder.create()
-        alertDialog.show()
+//        alertDialog.show()
     }
 
     private fun enableWifi() {
@@ -217,7 +225,7 @@ class HomeFragment : Fragment() , SensorEventListener{
 
 
     companion object {
-        private const val LOW_THRESHOLD = 15000f // You can adjust this threshold as needed
-        private const val MID_THRESHOLD = 25000f // You can adjust this threshold as needed
+        private const val LOW_THRESHOLD = 0f // You can adjust this threshold as needed
+        private const val MID_THRESHOLD = 25f // You can adjust this threshold as needed
     }
 }

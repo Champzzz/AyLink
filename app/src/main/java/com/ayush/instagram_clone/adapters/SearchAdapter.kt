@@ -11,18 +11,26 @@ import com.ayush.instagram_clone.Models.User
 import com.ayush.instagram_clone.R
 import com.ayush.instagram_clone.View_Profile
 import com.ayush.instagram_clone.databinding.SearchRvDgBinding
+import com.ayush.instagram_clone.utils.CHAT
 import com.ayush.instagram_clone.utils.FOLLOW
 import com.ayush.instagram_clone.utils.FOLLOWTHEM
 import com.ayush.instagram_clone.utils.USER_NODE
 import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
 
 class SearchAdapter(var context: Context, var user_list : ArrayList<User>) :RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
 
     inner class ViewHolder(var binding:SearchRvDgBinding):RecyclerView.ViewHolder(binding.root)
+
+    private lateinit var database: FirebaseDatabase
+    private lateinit var firestore: FirebaseFirestore
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var binding = SearchRvDgBinding.inflate(LayoutInflater.from(context),parent,false)
@@ -41,15 +49,15 @@ class SearchAdapter(var context: Context, var user_list : ArrayList<User>) :Recy
         Glide.with(context).load(user_list.get(position).image).placeholder(R.drawable.account_icon).into(holder.binding.SearchUserImage)
         holder.binding.SearchUserName.text = user_list.get(position).name
 
-        Firebase.firestore.collection(Firebase.auth.currentUser!!.email.toString() + FOLLOW)
-            .whereEqualTo("email",user_list.get(position).email).get().addOnSuccessListener {
+        Firebase.firestore.collection(Firebase.auth.currentUser!!.email + FOLLOW)
+            .whereEqualTo("email",user_list.get(position).email.toString()).get().addOnSuccessListener {
 
-                if(it.isEmpty){
-                    holder.binding.FollowButton.text = "Follow"
-                    isFollow=false
-                }else{
+                if(!it.isEmpty){
                     holder.binding.FollowButton.text = "UnFollow"
                     isFollow=true
+                }else{
+                    holder.binding.FollowButton.text = "Follow"
+                    isFollow=false
                 }
             }
 
@@ -124,6 +132,15 @@ class SearchAdapter(var context: Context, var user_list : ArrayList<User>) :Recy
                             holder.binding.FollowButton.text="Follow "
                             isFollow=false
                         }
+                    database = FirebaseDatabase.getInstance()
+                    auth = FirebaseAuth.getInstance()
+
+                    val userEmailWithoutDomain = user.email?.replace("@gmail.com", "")
+                    val followEmailWithoutDomain = user_list.get(position).email.toString().replace("@gmail.com", "")
+
+                    database.reference.child(userEmailWithoutDomain + CHAT).child(followEmailWithoutDomain).removeValue()
+
+
 
                 }
 //                Firebase.firestore.collection(user_list.get(position).email + FOLLOWTHEM)
@@ -149,9 +166,24 @@ class SearchAdapter(var context: Context, var user_list : ArrayList<User>) :Recy
                     holder.binding.FollowButton.text="UnFollow"
                     isFollow=true
 
-                    Firebase.firestore.collection(user_list.get(position).email + FOLLOWTHEM).document().set(user!!)
+                    Firebase.firestore.collection(user_list.get(position).email+ FOLLOWTHEM).whereEqualTo("email",user.email).get().addOnSuccessListener {
+
+                        if (it.isEmpty) {
+                            Firebase.firestore.collection(user_list.get(position).email + FOLLOWTHEM).document().set(user!!)
+                        }
+
+                    }
+
+                    database = FirebaseDatabase.getInstance()
+                    auth = FirebaseAuth.getInstance()
+
+                    val userEmailWithoutDomain = user.email?.replace("@gmail.com", "")
+                    val followEmailWithoutDomain = user_list.get(position).email.toString().replace("@gmail.com", "")
+                    database.reference.child(userEmailWithoutDomain + CHAT).child(followEmailWithoutDomain).setValue(user_list.get(position))
 
                 }
+
+
 
 
             }

@@ -14,6 +14,7 @@ import com.ayush.instagram_clone.Models.User
 import com.ayush.instagram_clone.R
 import com.ayush.instagram_clone.View_Profile
 import com.ayush.instagram_clone.databinding.AllPostRvDgBinding
+import com.ayush.instagram_clone.post_Comments
 import com.ayush.instagram_clone.utils.SAVE
 import com.ayush.instagram_clone.utils.USER_NODE
 import com.bumptech.glide.Glide
@@ -71,6 +72,16 @@ class Post_Adapter(var context:Context, var post_list:ArrayList<Post>):RecyclerV
             i.type="text/plain"
             i.putExtra(Intent.EXTRA_TEXT,post_list.get(position).postUrl)
             context.startActivity(i)
+        }
+
+        holder.binding.comments.setOnClickListener {
+            var postuid = post_list[position].postUrl
+            var useruid = post_list[position].Uid
+            var i = Intent(context, post_Comments::class.java)
+            i.putExtra("postuid",postuid)
+            i.putExtra("useruid",useruid)
+            context.startActivity(i)
+            (context as Activity).overridePendingTransition(R.anim.animate_slide_up_enter,R.anim.animate_fade_exit)
         }
 
 

@@ -13,6 +13,8 @@ import com.ayush.instagram_clone.LogInActivity
 import com.ayush.instagram_clone.Models.User
 import com.ayush.instagram_clone.MySaved_Posts
 import com.ayush.instagram_clone.R
+import com.ayush.instagram_clone.Show_Flollowing
+import com.ayush.instagram_clone.Show_Follower
 import com.ayush.instagram_clone.adapters.Profile_ViewPagerAdapter
 import com.ayush.instagram_clone.databinding.FragmentProfileBinding
 import com.ayush.instagram_clone.utils.FOLLOW
@@ -133,6 +135,19 @@ class ProfileFragment : Fragment() {
 
         }
 
+        binding.profileNumberFollowingDisplay.setOnClickListener {
+
+            var intent = Intent(context,Show_Flollowing::class.java)
+            startActivity(intent)
+        }
+
+        binding.profileNumberFollowerDisplay.setOnClickListener {
+
+            var intent = Intent(context,Show_Follower::class.java)
+            startActivity(intent)
+
+
+        }
 
 
 

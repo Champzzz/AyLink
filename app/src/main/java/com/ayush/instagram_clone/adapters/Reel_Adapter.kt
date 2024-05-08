@@ -1,6 +1,8 @@
 package com.ayush.instagram_clone.adapters
 
-import android.content.Context import android.view.LayoutInflater
+import android.content.Context
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.toObject
 import com.google.firebase.firestore.toObjects
 import com.squareup.picasso.Picasso
 
@@ -30,7 +33,20 @@ class Reel_Adapter(var context: Context, var reels_list:ArrayList<Reels>): Recyc
     }
 
     override fun onBindViewHolder(holder: Reel_Adapter.ViewHolder, position: Int) {
-        Picasso.get().load(reels_list.get(position).profile_link).placeholder(R.drawable.add_profile).into(holder.binding.reelDGProfilPic)
+
+        Firebase.firestore.collection(USER_NODE).whereEqualTo("email",reels_list.get(position).profile_link.toString()).get().addOnSuccessListener {
+
+            for (document in it) {
+                val userimage = document.get("image")
+
+                Glide.with(context).load(userimage).placeholder(R.drawable.account_icon).into(holder.binding.reelDGProfilPic)
+
+
+
+            }
+        }
+
+
         holder.binding.reelDGCaption.setText(reels_list.get(position).caption)
         holder.binding.reelDGName.setText(reels_list.get(position).profile_name)
         holder.binding.videoView.setVideoPath(reels_list.get(position).ReelUrl)

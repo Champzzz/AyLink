@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/app_back"
+    android:background="@drawable/newcanvadesign"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
@@ -15,10 +15,11 @@
 
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.503"
-        app:srcCompat="@drawable/app_logo" />
+        app:layout_constraintVertical_bias="0.505"
+        app:srcCompat="@drawable/connectingpeopleremovebgpreview" />
 
     <TextView
         android:id="@+id/textView"
@@ -26,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="From"
-        android:textColor="#5C5C5C"
+        android:textColor="#989898"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
@@ -39,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="Ayush Yadav"
-        android:textColor="@color/pink"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -4,58 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/newcanvadesign"
-    tools:context=".MySaved_Posts">
+    tools:context=".Show_Follower">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/con_layout"
+        android:id="@+id/constraintlayout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <ImageView
-            android:id="@+id/backbtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/car_ui_icon_arrow_back"
+            android:id="@+id/back_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/leftarrow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <TextView
-            android:layout_width="361dp"
+            android:id="@+id/username_display"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Saved Posts"
+            android:text="Followers"
             android:textColor="@color/black"
-            android:textSize="24dp"
+            android:textSize="25dp"
             android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginRight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintHorizontal_bias="0.410"
+            app:layout_constraintStart_toEndOf="@+id/back_image"
             app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Saved_Post_RV"
+        android:id="@+id/showfollowing_rv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/con_layout"
+        android:layout_height="0dp"
+        tools:listitem="@layout/show_followingitem"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintlayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
